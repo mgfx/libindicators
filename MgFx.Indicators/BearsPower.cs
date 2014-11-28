@@ -1,4 +1,5 @@
-﻿using MgFx.History;
+﻿using CuttingEdge.Conditions;
+using MgFx.History;
 
 namespace MgFx.Indicators
 {
@@ -20,8 +21,16 @@ namespace MgFx.Indicators
         /// <param name="period">BearsPower period</param>
         /// <param name="timeSeries">TimeSeries history</param>
         /// <returns>Calculated indicator as TimeSeries</returns>
-        private static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
+        public static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
         {
+            Condition.Requires(price, "price")
+                .IsNotEmpty();
+            Condition.Requires(period, "period")
+                .IsGreaterThan(0)
+                .IsLessOrEqual(price.Length);
+            Condition.Requires(timeSeries, "timeSeries")
+                .IsNotNull();
+
             var bears = new double[price.Length];
 
             var ema = Ema.Calculate(price, period);

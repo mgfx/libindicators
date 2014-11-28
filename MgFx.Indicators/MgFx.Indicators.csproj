@@ -46,9 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ac.cs" />
+    <Compile Include="Adx.cs" />
     <Compile Include="Ao.cs" />
     <Compile Include="BearsPower.cs" />
     <Compile Include="BullsPower.cs" />
+    <Compile Include="DmiMinus.cs" />
+    <Compile Include="DmiPlus.cs" />
     <Compile Include="Ema.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Indicator.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="Sma.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trix.cs" />
+    <Compile Include="Wpr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MgFx.History\MgFx.History.csproj">

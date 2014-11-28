@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvLoader\DateFormat.cs" />
+    <Compile Include="CsvLoader\FileFormat.cs" />
+    <Compile Include="CsvLoader\RegexFormats.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="Mt5Loader\Mt5Header.cs" />
     <Compile Include="Mt5Loader\Mt5PriceQuote.cs" />
@@ -51,9 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSeries.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CsvLoader\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
