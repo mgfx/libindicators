@@ -2,12 +2,12 @@
 
 namespace MgFx.Indicators
 {
-    public class Trix : Indicator
+    public class TRIX : Indicator
     {
         /// <summary>
         /// Default Trix ctor
         /// </summary>
-        public Trix()
+        public TRIX()
         {
             Name = "TRIX - Triple-smoothed exponential moving average";
             ShortName = "TRIX";
@@ -28,9 +28,9 @@ namespace MgFx.Indicators
                 .IsLessOrEqual(price.Length);
 
             var trix = new double[price.Length];
-            var ema1 = Ema.Calculate(price, period);
-            var ema2 = Ema.Calculate(ema1, period);
-            var ema3 = Ema.Calculate(ema2, period);
+            var ema1 = EMA.Calculate(price, period);
+            var ema2 = EMA.Calculate(ema1, period);
+            var ema3 = EMA.Calculate(ema2, period);
             trix[0] = 0.0;
             for (int i = 1; i < price.Length; ++i)
             {

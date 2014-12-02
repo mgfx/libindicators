@@ -65,7 +65,7 @@ namespace MgFx.Indicators
                     mdm[i] = 100 * minusDm / tr;
                 }
             }
-            var dmi = Ema.Calculate(mdm, period);
+            var dmi = EMA.Calculate(mdm, period);
 
             return dmi;
         }

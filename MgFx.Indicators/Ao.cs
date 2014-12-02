@@ -2,19 +2,19 @@
 
 namespace MgFx.Indicators
 {
-    public class Ao : Indicator
+    public class AO : Indicator
     {
         /// <summary>
-        /// Ao default ctor
+        /// Default ctor
         /// </summary>
-        public Ao()
+        public AO()
         {
             Name = "Bill Williams' Awesome Oscillator";
             ShortName = "AO";
         }
 
         /// <summary>
-        /// Calculates Ao
+        /// Calculates indicator
         /// </summary>
         /// <param name="price">Price series used to calculate</param>
         /// <returns></returns>
@@ -23,8 +23,8 @@ namespace MgFx.Indicators
             Condition.Requires(price, "price")
                 .IsNotEmpty();
 
-            var aoFast = Sma.Calculate(price, 5);
-            var aoSlow = Sma.Calculate(price, 34);
+            var aoFast = SMA.Calculate(price, 5);
+            var aoSlow = SMA.Calculate(price, 34);
             var ao = new double[price.Length];
 
             for (int i = 0; i < price.Length; i++)

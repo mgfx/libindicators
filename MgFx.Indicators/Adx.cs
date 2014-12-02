@@ -7,22 +7,22 @@ namespace MgFx.Indicators
     /// <summary>
     /// Average Directional Movement Index
     /// </summary>
-    public class Adx : Indicator
+    public class ADX : Indicator
     {
         /// <summary>
-        /// Adx default ctor
+        /// default ctor
         /// </summary>
-        public Adx()
+        public ADX()
         {
             Name = "Welles Wilder' Average Directional Movement Index";
             ShortName = "EMA";
         }
 
         /// <summary>
-        /// Calculates Adx
+        /// Calculates indicator
         /// </summary>
         /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">ADX period</param>
+        /// <param name="period">Indicator period</param>
         /// <returns>Calculated indicator as TimeSeries</returns>
         public static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
         {
@@ -44,7 +44,7 @@ namespace MgFx.Indicators
                     dx[i] = 0;
                 else dx[i] = 100 * (Math.Abs(pDi[i] - mDi[i]) / (pDi[i] + mDi[i]));
             }
-            var adx = Ema.Calculate(dx, period);
+            var adx = EMA.Calculate(dx, period);
 
             return adx;
         }

@@ -27,5 +27,31 @@ namespace MgFx.Indicators
         {
             return Math.Abs(value - compareTo) < double.Epsilon;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        public static void Substract(this double[] src, double[] dst)
+        {
+            for (int i = 0; i < src.Length; i++)
+                src[i] -= dst[i];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="dst"></param>
+        /// <returns></returns>
+        public static double[] CreateSubstract(this double[] src, double[] dst)
+        {
+            var t = new double[src.Length];
+            for (int i = 0; i < src.Length; i++)
+                t[i] = src[i] - dst[i];
+
+            return t;
+        }
     }
 }

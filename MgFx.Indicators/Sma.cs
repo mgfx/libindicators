@@ -5,12 +5,12 @@ namespace MgFx.Indicators
     /// <summary>
     /// Simple Moving Average
     /// </summary>
-    public class Sma : Indicator
+    public class SMA : Indicator
     {
         /// <summary>
-        /// SMA default ctor
+        /// default ctor
         /// </summary>
-        public Sma()
+        public SMA()
         {
             Name = "Simple Moving Average";
             ShortName = "SMA";

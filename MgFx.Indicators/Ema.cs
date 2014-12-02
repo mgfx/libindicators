@@ -5,12 +5,12 @@ namespace MgFx.Indicators
     /// <summary>
     /// Simple Moving Average
     /// </summary>
-    public class Ema : Indicator
+    public class EMA : Indicator
     {
         /// <summary>
-        /// SMA default ctor
+        /// default ctor
         /// </summary>
-        public Ema()
+        public EMA()
         {
             Name = "Exponential Moving Average";
             ShortName = "EMA";

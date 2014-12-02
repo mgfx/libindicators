@@ -2,19 +2,19 @@
 
 namespace MgFx.Indicators
 {
-    public class Rsi : Indicator
+    public class RSI : Indicator
     {
         /// <summary>
-        /// Default RSI ctor
+        /// RSI ctor
         /// </summary>
-        public Rsi()
+        public RSI()
         {
             Name = "Relative Strength Index developed by J. Welles Wilder and published in a 1978 book, New Concepts in Technical Trading Systems";
             ShortName = "RSI";
         }
 
         /// <summary>
-        /// Calculates Rsi
+        /// Calculates indicator
         /// </summary>
         /// <param name="price">Timeseries of price for calculation</param>
         /// <param name="period">RSI period</param>

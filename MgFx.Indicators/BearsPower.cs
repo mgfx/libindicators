@@ -33,7 +33,7 @@ namespace MgFx.Indicators
 
             var bears = new double[price.Length];
 
-            var ema = Ema.Calculate(price, period);
+            var ema = EMA.Calculate(price, period);
             for (var i = 0; i < price.Length; i++)
                 bears[i] = timeSeries.Low[i] - ema[i];
 

@@ -3,12 +3,12 @@ using MgFx.History;
 
 namespace MgFx.Indicators
 {
-    public class Wpr : Indicator
+    public class WPR : Indicator
     {
         /// <summary>
         /// Defaults Wpr ctor
         /// </summary>
-        public Wpr()
+        public WPR()
         {
             Name = "Williams Percent Range";
             ShortName = "WPR";
