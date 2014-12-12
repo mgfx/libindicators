@@ -49,7 +49,9 @@
     <Compile Include="CsvLoader\RegexFormats.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="Mt5Loader\Mt5Header.cs" />
-    <Compile Include="Mt5Loader\Mt5PriceQuote.cs" />
+    <Compile Include="Mt5Loader\Mt5PriceQuote.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeSeries.cs" />

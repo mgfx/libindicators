@@ -1,26 +1,39 @@
-﻿using CuttingEdge.Conditions;
-using MgFx.History;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DmiPlus.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Directional Movement Index Plus Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    using MgFx.History;
+
+    /// <summary>
+    /// Directional Movement Index Plus Indicator.
+    /// </summary>
     public class DmiPlus : Indicator
     {
         /// <summary>
-        /// Default DmiPlus ctor
+        /// Initializes a new instance of the <see cref="DmiPlus"/> class. 
         /// </summary>
         public DmiPlus()
         {
-            Name = "Directional Movement Index Plus";
-            ShortName = "DMI+";
+            this.Name = "Directional Movement Index Plus";
+            this.ShortName = "DMI+";
         }
 
         /// <summary>
-        /// Calculates DMI+
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">DMI period</param>
-        /// <param name="timeSeries">TimeSeries history</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <param name="timeSeries">Instrument <c>ohlc</c> time series.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
         {
             Condition.Requires(price, "price")
@@ -40,9 +53,14 @@ namespace MgFx.Indicators
                 var minusDm = timeSeries.Low[i - 1] - timeSeries.Low[i];
 
                 if (plusDm < 0)
+                {
                     plusDm = 0;
+                }
+
                 if (minusDm < 0)
+                {
                     minusDm = 0;
+                }
 
                 if (plusDm.AlmostEqual(minusDm))
                 {
@@ -65,6 +83,7 @@ namespace MgFx.Indicators
                     mdm[i] = 100 * minusDm / tr;
                 }
             }
+
             var dmi = EMA.Calculate(mdm, period);
 
             return dmi;

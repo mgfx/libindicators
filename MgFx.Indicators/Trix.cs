@@ -1,24 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Trix.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Triple-smoothed Exponential Moving Average Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    /// <summary>
+    /// Triple-smoothed Exponential Moving Average Indicator.
+    /// </summary>
     public class TRIX : Indicator
     {
         /// <summary>
-        /// Default Trix ctor
+        /// Initializes a new instance of the <see cref="TRIX"/> class. 
         /// </summary>
         public TRIX()
         {
-            Name = "TRIX - Triple-smoothed exponential moving average";
-            ShortName = "TRIX";
+            this.Name = "TRIX - Triple-smoothed Exponential Moving Average";
+            this.ShortName = "TRIX";
         }
 
         /// <summary>
-        /// Calculates Trix 
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">Trix period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -35,9 +47,13 @@ namespace MgFx.Indicators
             for (int i = 1; i < price.Length; ++i)
             {
                 if (ema3[i].IsAlmostZero())
+                {
                     trix[i] = 0.0;
+                }
                 else
+                {
                     trix[i] = 100.0 * ((ema3[i] - ema3[i - 1]) / ema3[i]);
+                }
             }
 
             return trix;

@@ -1,25 +1,38 @@
-﻿using CuttingEdge.Conditions;
-using MgFx.History;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ATRP.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Average True Range Percentage Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    using MgFx.History;
+
+    /// <summary>
+    /// Average True Range Percentage Indicator.
+    /// </summary>
     public class ATRP : Indicator
     {
         /// <summary>
-        /// Defaults ctor
+        /// Initializes a new instance of the <see cref="ATRP"/> class. 
         /// </summary>
         public ATRP()
         {
-            Name = "Average True Range Percentage";
-            ShortName = "ATRP";
+            this.Name = "Average True Range Percentage";
+            this.ShortName = "ATRP";
         }
 
         /// <summary>
-        /// Calculates indicator
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="period">Indicator period</param>
-        /// <param name="timeSeries">TimeSeries history</param>
-        /// <returns>Calculated indicator</returns>
+        /// <param name="period">Indicator period.</param>
+        /// <param name="timeSeries">Instrument <c>ohlc</c> time series.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(int period, TimeSeries timeSeries)
         {
             Condition.Requires(timeSeries, "timeSeries")
@@ -34,6 +47,7 @@ namespace MgFx.Indicators
             {
                 atrp[i] = atr[i] * 100.0 / timeSeries.Close[i];
             }
+
             return atrp;
         }
     }

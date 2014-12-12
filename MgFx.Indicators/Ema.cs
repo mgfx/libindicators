@@ -1,27 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Ema.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Exponential Moving Average Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
     /// <summary>
-    /// Simple Moving Average
+    /// Exponential Moving Average Indicator.
     /// </summary>
     public class EMA : Indicator
     {
         /// <summary>
-        /// default ctor
+        /// Initializes a new instance of the <see cref="EMA"/> class. 
         /// </summary>
         public EMA()
         {
-            Name = "Exponential Moving Average";
-            ShortName = "EMA";
+            this.Name = "Exponential Moving Average";
+            this.ShortName = "EMA";
         }
 
         /// <summary>
-        /// Calculates Ema 
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">EMA period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -36,7 +45,7 @@ namespace MgFx.Indicators
 
             for (int i = 0; i < price.Length; i++)
             {
-                sum += coeff*(price[i] - sum);
+                sum += coeff * (price[i] - sum);
                 ema[i] = sum;
             }
 

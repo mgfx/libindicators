@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Ao.cs" company="Mariusz Gumowski">
+// <copyright file="IIR.cs" company="Mariusz Gumowski">
 //   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
 // </copyright>
 // <summary>
-//   Awesome Oscillator Indicator.
+//   Infinite Impulse Response Moving Average Indicator.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -12,17 +12,17 @@ namespace MgFx.Indicators
     using CuttingEdge.Conditions;
 
     /// <summary>
-    /// Awesome Oscillator Indicator.
+    /// Infinite Impulse Response Moving Average Indicator.
     /// </summary>
-    public class AO : Indicator
+    public class IIR : Indicator
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AO"/> class. 
+        /// Initializes a new instance of the <see cref="IIR"/> class.
         /// </summary>
-        public AO()
+        public IIR()
         {
-            this.Name = "Bill Williams' Awesome Oscillator";
-            this.ShortName = "AO";
+            this.Name = "John F. Ehlers' Infinite Impulse Response Moving Average";
+            this.ShortName = "IIR";
         }
 
         /// <summary>
@@ -35,16 +35,7 @@ namespace MgFx.Indicators
             Condition.Requires(price, "price")
                 .IsNotEmpty();
 
-            var fastSma = SMA.Calculate(price, 5);
-            var slowSma = SMA.Calculate(price, 34);
-            var ao = new double[price.Length];
-
-            for (int i = 0; i < price.Length; i++)
-            {
-                ao[i] = fastSma[i] - slowSma[i];
-            }
-
-            return ao;
+            return FIR.Calculate(price, new double[] { 2, 4, 0, 0, -1 });
         }
     }
 }

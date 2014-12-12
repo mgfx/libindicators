@@ -1,24 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="COG.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Center Of Gravity Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    /// <summary>
+    /// Center Of Gravity Indicator.
+    /// </summary>
     public class COG : Indicator
     {
         /// <summary>
-        /// Defaults ctor
+        /// Initializes a new instance of the <see cref="COG"/> class. 
         /// </summary>
         public COG()
         {
-            Name = "John Ehlers's Center of Gravity oscillator";
-            ShortName = "COG";
+            this.Name = "John Ehlers's Center of Gravity oscillator";
+            this.ShortName = "COG";
         }
 
         /// <summary>
-        /// Calculates indicator
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price"></param>
-        /// <param name="period">period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -30,15 +42,17 @@ namespace MgFx.Indicators
             var cog = new double[price.Length];
             for (int i = period - 1; i < price.Length; ++i)
             {
-                var wSum = 0.0;
+                var weightedSum = 0.0;
                 var sum = 0.0;
                 for (int j = 0; j < period; ++j)
                 {
-                    wSum += price[i - period + j + 1] * (period - j);
+                    weightedSum += price[i - period + j + 1] * (period - j);
                     sum += price[i - period + j + 1];
                 }
-                cog[i] = -wSum / sum;
+
+                cog[i] = -weightedSum / sum;
             }
+
             return cog;
         }
     }

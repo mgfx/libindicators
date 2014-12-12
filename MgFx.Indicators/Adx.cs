@@ -1,29 +1,41 @@
-﻿using System;
-using CuttingEdge.Conditions;
-using MgFx.History;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Adx.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Average Directional Movement Index Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using System;
+
+    using CuttingEdge.Conditions;
+
+    using MgFx.History;
+
     /// <summary>
-    /// Average Directional Movement Index
+    /// Average Directional Movement Index Indicator.
     /// </summary>
     public class ADX : Indicator
     {
         /// <summary>
-        /// default ctor
+        /// Initializes a new instance of the <see cref="ADX"/> class. 
         /// </summary>
         public ADX()
         {
-            Name = "Welles Wilder' Average Directional Movement Index";
-            ShortName = "EMA";
+            this.Name = "Welles Wilder' Average Directional Movement Index";
+            this.ShortName = "EMA";
         }
 
         /// <summary>
-        /// Calculates indicator
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">Indicator period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <param name="timeSeries">Instrument <c>ohlc</c> time series.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
         {
             Condition.Requires(price, "price")
@@ -41,9 +53,15 @@ namespace MgFx.Indicators
             {
                 var diff = pDi[i] + mDi[i];
                 if (diff.IsAlmostZero())
+                {
                     dx[i] = 0;
-                else dx[i] = 100 * (Math.Abs(pDi[i] - mDi[i]) / (pDi[i] + mDi[i]));
+                }
+                else
+                {
+                    dx[i] = 100 * (Math.Abs(pDi[i] - mDi[i]) / (pDi[i] + mDi[i]));
+                }
             }
+
             var adx = EMA.Calculate(dx, period);
 
             return adx;

@@ -1,24 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Rsi.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Relative Strength Index Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    /// <summary>
+    /// Relative Strength Index Indicator.
+    /// </summary>
     public class RSI : Indicator
     {
         /// <summary>
-        /// RSI ctor
+        /// Initializes a new instance of the <see cref="RSI"/> class. 
         /// </summary>
         public RSI()
         {
-            Name = "Relative Strength Index developed by J. Welles Wilder and published in a 1978 book, New Concepts in Technical Trading Systems";
-            ShortName = "RSI";
+            this.Name = "Relative Strength Index developed by J. Welles Wilder and published in a 1978 book, New Concepts in Technical Trading Systems";
+            this.ShortName = "RSI";
         }
 
         /// <summary>
-        /// Calculates indicator
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">RSI period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -38,9 +50,13 @@ namespace MgFx.Indicators
             {
                 var diff = price[i] - price[i - 1];
                 if (diff >= 0)
+                {
                     gain += diff;
+                }
                 else
+                {
                     loss -= diff;
+                }
             }
 
             double avrg = gain / period;
@@ -54,7 +70,7 @@ namespace MgFx.Indicators
 
                 if (diff >= 0)
                 {
-                    avrg = (avrg * (period - 1) + diff) / period;
+                    avrg = ((avrg * (period - 1)) + diff) / period;
                     avrl = (avrl * (period - 1)) / period;
                 }
                 else
@@ -65,7 +81,7 @@ namespace MgFx.Indicators
 
                 rs = avrg / avrl;
 
-                rsi[i] = (100 - (100 / (1 + rs)));
+                rsi[i] = 100 - (100 / (1 + rs));
             }
 
             return rsi;

@@ -1,26 +1,39 @@
-﻿using CuttingEdge.Conditions;
-using MgFx.History;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BearsPower.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Bears Power Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    using MgFx.History;
+
+    /// <summary>
+    /// Bears Power Indicator.
+    /// </summary>
     public class BearsPower : Indicator
     {
         /// <summary>
-        /// Defaults BearsPower ctor
+        /// Initializes a new instance of the <see cref="BearsPower"/> class. 
         /// </summary>
         public BearsPower()
         {
-            Name = "Dr. Alexander Elder's Bulls/Bears Power (Elder-Rays)";
-            ShortName = "BearsPower";
+            this.Name = "Dr. Alexander Elder's Bulls/Bears Power (Elder-Rays)";
+            this.ShortName = "BearsPower";
         }
 
         /// <summary>
-        /// Calculates BearsPower
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">BearsPower period</param>
-        /// <param name="timeSeries">TimeSeries history</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <param name="timeSeries">Instrument <c>ohlc</c> time series.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period, TimeSeries timeSeries)
         {
             Condition.Requires(price, "price")
@@ -35,7 +48,9 @@ namespace MgFx.Indicators
 
             var ema = EMA.Calculate(price, period);
             for (var i = 0; i < price.Length; i++)
+            {
                 bears[i] = timeSeries.Low[i] - ema[i];
+            }
 
             return bears;
         }

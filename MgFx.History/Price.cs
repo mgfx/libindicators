@@ -1,4 +1,13 @@
-﻿namespace MgFx.History
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Price.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Enumerates different prices
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace MgFx.History
 {
     /// <summary>
     /// Enumerates different prices

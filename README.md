@@ -18,6 +18,8 @@ COG | John Ehlers's Center of Gravity
 DMI- | Directional Movement Index Minus
 DMI+ | Directional Movement Index Plus
 EMA | Exponential Moving Average
+FIR | Finite Impulse Response Moving Average
+IIR | Infinite Impulse Response Moving Average
 RSI | Relative Strength Index
 SMA | Simple Moving Average
 TRIX | Triple Exponential Moving Average

@@ -1,24 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Ac.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Accelerator / Decelerator Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
+    /// <summary>
+    /// Accelerator / Decelerator Indicator.
+    /// </summary>
     public class AC : Indicator
     {
         /// <summary>
-        /// default ctor
+        /// Initializes a new instance of the <see cref="AC"/> class. 
         /// </summary>
         public AC()
         {
-            Name = "Bill Williams' Accelerator/Decelerator oscillator";
-            ShortName = "AC";
+            this.Name = "Bill Williams' Accelerator/Decelerator oscillator";
+            this.ShortName = "AC";
         }
 
         /// <summary>
-        /// Calcultes indicator
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">price</param>
-        /// <param name="period">period</param>
-        /// <returns></returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -28,12 +40,14 @@ namespace MgFx.Indicators
                 .IsLessOrEqual(price.Length);
 
             var ao = AO.Calculate(price);
-            var aoSma = SMA.Calculate(ao, 5);
-            return ao.CreateSubstract(aoSma);
-/*            var ac = new double[price.Length];
+            var smaOfAo = SMA.Calculate(ao, 5);
+            var ac = new double[price.Length];
             for (var i = 0; i < price.Length; ++i)
-                ac[i] = ao[i] - aoSma[i];
-            return ac;*/
+            {
+                ac[i] = ao[i] - smaOfAo[i];
+            }
+
+            return ac;
         }
     }
 }

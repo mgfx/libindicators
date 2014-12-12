@@ -1,27 +1,36 @@
-﻿using CuttingEdge.Conditions;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Sma.cs" company="Mariusz Gumowski">
+//   Copyright (c) 2003-2015 Mariusz Gumowski. All rights reserved.
+// </copyright>
+// <summary>
+//   Simple Moving Average Indicator.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace MgFx.Indicators
 {
+    using CuttingEdge.Conditions;
+
     /// <summary>
-    /// Simple Moving Average
+    /// Simple Moving Average Indicator.
     /// </summary>
     public class SMA : Indicator
     {
         /// <summary>
-        /// default ctor
+        /// Initializes a new instance of the <see cref="SMA"/> class. 
         /// </summary>
         public SMA()
         {
-            Name = "Simple Moving Average";
-            ShortName = "SMA";
+            this.Name = "Simple Moving Average";
+            this.ShortName = "SMA";
         }
 
         /// <summary>
-        /// Calculates Sma 
+        /// Calculates indicator.
         /// </summary>
-        /// <param name="price">Timeseries of price for calculation</param>
-        /// <param name="period">SMA period</param>
-        /// <returns>Calculated indicator as TimeSeries</returns>
+        /// <param name="price">Price series.</param>
+        /// <param name="period">Indicator period.</param>
+        /// <returns>Calculated indicator series.</returns>
         public static double[] Calculate(double[] price, int period)
         {
             Condition.Requires(price, "price")
@@ -44,7 +53,10 @@ namespace MgFx.Indicators
             {
                 sum = 0;
                 for (var j = i; j > i - period; j--)
+                {
                     sum += price[j];
+                }
+
                 sma[i] = sum / period;
             }
 

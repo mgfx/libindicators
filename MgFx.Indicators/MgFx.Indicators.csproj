@@ -58,6 +58,8 @@
     <Compile Include="DmiPlus.cs" />
     <Compile Include="EMA.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FIR.cs" />
+    <Compile Include="IIR.cs" />
     <Compile Include="Indicator.cs" />
     <Compile Include="RSI.cs" />
     <Compile Include="SMA.cs" />
