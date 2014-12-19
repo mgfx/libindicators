@@ -19,7 +19,11 @@ DMI- | Directional Movement Index Minus
 DMI+ | Directional Movement Index Plus
 EMA | Exponential Moving Average
 FIR | Finite Impulse Response Moving Average
+Highest | Highest Value Indicator
 IIR | Infinite Impulse Response Moving Average
+Lowest | Lowest Value Indicator
+LWMA | Linearly Weighted Moving Average
+Momentum | Momentum Indicator
 RSI | Relative Strength Index
 SMA | Simple Moving Average
 TRIX | Triple Exponential Moving Average

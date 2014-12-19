@@ -59,8 +59,12 @@
     <Compile Include="EMA.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FIR.cs" />
+    <Compile Include="Highest.cs" />
     <Compile Include="IIR.cs" />
     <Compile Include="Indicator.cs" />
+    <Compile Include="Lowest.cs" />
+    <Compile Include="LWMA.cs" />
+    <Compile Include="Momentum.cs" />
     <Compile Include="RSI.cs" />
     <Compile Include="SMA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
